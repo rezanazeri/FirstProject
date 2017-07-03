@@ -18,8 +18,11 @@ public class MainActivity extends AppCompatActivity implements FirstFragment.OnF
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+//        StatusBarUtil.setColor(this, getResources().getColor(R.color.colorPrimaryDark), 0);
 
-        changeFragment(this, FirstFragment.newInstance(), false);
+        if (savedInstanceState == null) {
+            changeFragment(this, FirstFragment.newInstance(), false);
+        }
     }
 
     public void changeFragment(FragmentActivity context, Fragment fragment, boolean addToBackStack) {

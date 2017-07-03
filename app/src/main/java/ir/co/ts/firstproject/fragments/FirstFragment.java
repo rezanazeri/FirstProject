@@ -1,9 +1,12 @@
 package ir.co.ts.firstproject.fragments;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -62,7 +65,16 @@ public class FirstFragment extends Fragment {
         imageView.setOnClickListener(imageViewClickListener);
         imageView.setOnLongClickListener(imageViewLongClickListener);
         initWebView(webView);
-        loadWebPage(webView, "https://google.com");
+        if (haveInternet(getActivity())) {
+            loadWebPage(webView, "https://google.com");
+        } else {
+            new AlertDialog.Builder(getActivity())
+                    .setTitle("توجه")
+                    .setMessage("لطفا به اینترنت متصل شوید")
+                    .setCancelable(true)
+                    .setPositiveButton("تایید", null)
+                    .show();
+        }
     }
 
     private void initWebView(WebView webView) {
@@ -89,6 +101,12 @@ public class FirstFragment extends Fragment {
                 .diskCacheStrategy(DiskCacheStrategy.RESULT)
                 .skipMemoryCache(false)
                 .into(imageView);
+    }
+
+    public static boolean haveInternet(Context context) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
     @Override

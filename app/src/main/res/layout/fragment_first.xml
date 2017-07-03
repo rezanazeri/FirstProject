@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/grey100"
     android:orientation="vertical"
     tools:context="ir.co.ts.firstproject.fragments.FirstFragment">
 
@@ -21,7 +22,8 @@
         android:layout_alignParentBottom="true"
         android:layout_centerVertical="true"
         android:layout_marginTop="10dp"
-        android:src="@drawable/material_design_icon"
-        android:layout_weight="1" />
+        android:layout_marginBottom="10dp"
+        android:layout_weight="1"
+         />
 
 </LinearLayout>

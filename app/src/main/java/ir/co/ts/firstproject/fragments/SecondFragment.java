@@ -8,9 +8,11 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -44,13 +46,18 @@ public class SecondFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.second_recyclerView);
-        initRecycler(getActivity(), recyclerView, R.layout.second_list_item, false);
 
-        UpdateTask task = new UpdateTask();
-        task.execute();
+        try {
+            initRecycler(getActivity(), recyclerView, R.layout.second_list_item, false);
+            UpdateTask task = new UpdateTask();
+            task.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(getActivity(), "برنامه با خطا مواجه شد", Toast.LENGTH_SHORT).show();
+        }
     }
 
-    private void initRecycler(Context context, RecyclerView recyclerView, int rowLayout, boolean haveDivider) {
+    private void initRecycler(Context context, RecyclerView recyclerView, int rowLayout, boolean haveDivider) throws Exception {
         if (recyclerView != null) {
             recyclerView.setHasFixedSize(false);
             LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
@@ -66,7 +73,7 @@ public class SecondFragment extends Fragment {
         }
     }
 
-    private void updateRecycler(RecyclerView recyclerView, List<?> list) {
+    private void updateRecycler(RecyclerView recyclerView, List<?> list) throws Exception {
         if (recyclerView != null) {
             SecondListAdapter adapter = (SecondListAdapter) recyclerView.getAdapter();
             adapter.setData(list);
@@ -114,12 +121,17 @@ public class SecondFragment extends Fragment {
 
         @Override
         protected List<?> doInBackground(Void... params) {
-            return DataManager.getSecondListData();
+            return new DataManager().getSecondListData();
         }
 
         @Override
         protected void onPostExecute(List<?> contacts) {
-            updateRecycler(recyclerView, contacts);
+            try {
+                updateRecycler(recyclerView, contacts);
+            } catch (Exception e) {
+                e.printStackTrace();
+                Toast.makeText(getActivity(), "برنامه با خطا مواجه شد", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 

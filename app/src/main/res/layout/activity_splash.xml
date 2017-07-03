@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="10"
-    android:background="@color/amber300"
+    android:background="@color/lightblue500"
     android:gravity="center"
     tools:context="ir.co.ts.firstproject.SplashActivity">
 
