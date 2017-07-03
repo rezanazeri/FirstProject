@@ -5,7 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.Toolbar;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements FirstFragment.OnFragmentInteractionListener, SecondFragment.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,7 +16,7 @@ public class MainActivity extends BaseActivity {
 
         changeFragment(this, FirstFragment.newInstance(), false);
     }
-    
+
     public void changeFragment(FragmentActivity context, Fragment fragment, boolean addToBackStack) {
         if (context != null && fragment != null) {
 
@@ -33,6 +33,17 @@ public class MainActivity extends BaseActivity {
             }
         }
     }
+
+    @Override
+    public void onYahooOpen() {
+        changeFragment(MainActivity.this, SecondFragment.newInstance(), false);
+    }
+
+    @Override
+    public void onFirstItemClick() {
+        changeFragment(MainActivity.this, FirstFragment.newInstance(), false);
+    }
+
 
 //    @Override
 //    public boolean onCreateOptionsMenu(Menu menu) {
