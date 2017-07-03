@@ -16,13 +16,13 @@ public class SecondFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static FirstFragment newInstance() {
-        return new FirstFragment();
+    public static SecondFragment newInstance() {
+        return new SecondFragment();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_first, container, false);
+        return inflater.inflate(R.layout.fragment_second, container, false);
     }
 
     public void onButtonPressed() {
