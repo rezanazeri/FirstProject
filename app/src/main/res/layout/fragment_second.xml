@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@color/grey300"
     android:orientation="vertical"
-    tools:context="ir.co.ts.firstproject.SecondFragment">
+    tools:context="ir.co.ts.firstproject.fragments.SecondFragment">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/second_recyclerView"

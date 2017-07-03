@@ -1,4 +1,4 @@
-package ir.co.ts.firstproject;
+package ir.co.ts.firstproject.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -14,6 +14,8 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
+import ir.co.ts.firstproject.R;
 
 
 public class FirstFragment extends Fragment {
