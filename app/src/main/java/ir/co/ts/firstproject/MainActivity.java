@@ -1,13 +1,9 @@
 package ir.co.ts.firstproject;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
 
 public class MainActivity extends BaseActivity {
 
@@ -18,6 +14,24 @@ public class MainActivity extends BaseActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        changeFragment(this, FirstFragment.newInstance(), false);
+    }
+    
+    public void changeFragment(FragmentActivity context, Fragment fragment, boolean addToBackStack) {
+        if (context != null && fragment != null) {
+
+            if (addToBackStack) {
+                context.getSupportFragmentManager().beginTransaction()
+//                .setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit)
+                        .replace(R.id.mainContainer, fragment, fragment.getClass().getSimpleName())
+                        .addToBackStack(null)
+                        .commit();
+            } else {
+                context.getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.mainContainer, fragment, fragment.getClass().getSimpleName())
+                        .commit();
+            }
+        }
     }
 
 //    @Override
